@@ -75,7 +75,7 @@ class MovieCard extends StatelessWidget {
                       color: Colors.yellow,
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

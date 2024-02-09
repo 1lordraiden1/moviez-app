@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'movie_card.dart';
+import 'vertical_card.dart';
 
 class DashboardPages extends StatelessWidget {
   const DashboardPages({super.key});
@@ -90,48 +91,16 @@ class DashboardPages extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const VerticalCard()
+                const VerticalCard(
+                  image: "assets/thumnails/oldyasuo.jpg",
+                  title: "Old Yasuo",
+                  genre1: "History",
+                  genre2: "Action",
+                )
               ],
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class VerticalCard extends StatelessWidget {
-  const VerticalCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      child: Row(
-        children: [
-          Image(
-            image: AssetImage("assets/thumnails/oldyasuo.jpg"),
-            width: 170,
-            height: 200,
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Moviez",
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              Text(
-                "New Movies",
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }
