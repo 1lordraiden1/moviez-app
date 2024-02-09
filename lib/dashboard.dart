@@ -9,6 +9,7 @@ class DashboardPages extends StatelessWidget {
       body: ListView(
         children: [
           Container(
+            padding: const EdgeInsets.all(10),
             width: MediaQuery.of(context).size.width,
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -23,8 +24,24 @@ class DashboardPages extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Moviez",
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                    Text("New Movies",
+                        style: Theme.of(context).textTheme.labelMedium),
+                  ],
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search),
+                ),
               ],
             ),
           ),
