@@ -37,8 +37,10 @@ class DashboardPages extends StatelessWidget {
                         "Moviez",
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      Text("New Movies",
-                          style: Theme.of(context).textTheme.bodySmall),
+                      Text(
+                        "New Movies",
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
                     ],
                   ),
                   IconButton(
@@ -51,12 +53,46 @@ class DashboardPages extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            const MovieCard(
-              image: "assets/thumnails/oldyasuo.jpg",
-              title: "Yasuo",
-              genre1: "Action",
-              genre2: "Warrior",
-            )
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 280,
+                  width: double.infinity,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    children: const [
+                      MovieCard(
+                        image: "assets/thumnails/oldyasuo.jpg",
+                        title: "Yasuo",
+                        genre1: "Action",
+                        genre2: "Warrior",
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      MovieCard(
+                        image: "assets/thumnails/oldyasuo.jpg",
+                        title: "Yasuo",
+                        genre1: "Action",
+                        genre2: "Warrior",
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                Text(
+                  "From Holywood",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const VerticalCard()
+              ],
+            ),
           ],
         ),
       ),
@@ -64,3 +100,39 @@ class DashboardPages extends StatelessWidget {
   }
 }
 
+class VerticalCard extends StatelessWidget {
+  const VerticalCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 200,
+      child: Row(
+        children: [
+          Image(
+            image: AssetImage("assets/thumnails/oldyasuo.jpg"),
+            width: 170,
+            height: 200,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Moviez",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Text(
+                "New Movies",
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
