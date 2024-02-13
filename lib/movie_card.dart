@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moviez/models/movie.dart';
 
 class MovieCard extends StatelessWidget {
-  const MovieCard({
-    super.key,
-    required this.title,
-    required this.genre1,
-    required this.genre2,
-    required this.image,
-  });
+  const MovieCard({super.key, required this.movie});
 
-  final String title;
-  final String genre1;
-  final String genre2;
-  final String image;
+  final Movie movie;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +16,7 @@ class MovieCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image(
-              image: AssetImage(image),
+              image: NetworkImage(movie.image),
               width: 300,
               height: 207,
               fit: BoxFit.cover,
@@ -45,10 +37,10 @@ class MovieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      movie.name,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
-                    Text("$genre1 ,$genre2",
+                    Text("${movie.startDate} ,${movie.endDate}",
                         style: Theme.of(context).textTheme.bodySmall),
                   ],
                 ),

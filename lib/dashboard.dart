@@ -1,10 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:moviez/cubit/movie_cubit.dart';
 
 import 'movie_card.dart';
 import 'vertical_card.dart';
 
-class DashboardPages extends StatelessWidget {
+class DashboardPages extends StatefulWidget {
   const DashboardPages({super.key});
+
+  @override
+  State<DashboardPages> createState() => _DashboardPagesState();
+}
+
+class _DashboardPagesState extends State<DashboardPages> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    context.read<MovieCubit>().getMovies(1);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,29 +73,31 @@ class DashboardPages extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 280,
-                  width: double.infinity,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: const [
-                      MovieCard(
-                        image: "assets/thumnails/oldyasuo.jpg",
-                        title: "Yasuo",
-                        genre1: "Action",
-                        genre2: "Warrior",
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      MovieCard(
-                        image: "assets/thumnails/oldyasuo.jpg",
-                        title: "Yasuo",
-                        genre1: "Action",
-                        genre2: "Warrior",
-                      ),
-                    ],
-                  ),
-                ),
+                    height: 280,
+                    width: double.infinity,
+                    child: BlocBuilder<MovieCubit, MovieState>(
+                        builder: (context, state) {
+                      return (state is MovieLoaded)
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: state.movies
+                                      .sublist(0, 10)
+                                      .map((movie) => Padding(
+                                            padding: EdgeInsets.only(
+                                                left: (movie ==
+                                                        state.movies.first)
+                                                    ? 24
+                                                    : 0),
+                                            child: MovieCard(movie: movie),
+                                          ))
+                                      .toList()),
+                            )
+                          : Center(
+                              child: Text("No Data Found"),
+                            );
+                    })),
                 const SizedBox(
                   height: 50,
                 ),
@@ -94,20 +111,7 @@ class DashboardPages extends StatelessWidget {
                 Container(
                   height: 200,
                   child: ListView(
-                    children: const [
-                      VerticalCard(
-                        image: "assets/thumnails/oldyasuo.jpg",
-                        title: "Old Yasuo",
-                        genre1: "History",
-                        genre2: "Action",
-                      ),
-                      VerticalCard(
-                        image: "assets/thumnails/oldyasuo.jpg",
-                        title: "Old Yasuo",
-                        genre1: "History",
-                        genre2: "Action",
-                      ),
-                    ],
+                    children: [],
                   ),
                 ),
               ],
