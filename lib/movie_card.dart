@@ -39,9 +39,15 @@ class MovieCard extends StatelessWidget {
                     Text(
                       movie.name,
                       style: Theme.of(context).textTheme.titleLarge,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
                     ),
-                    Text("${movie.startDate} ,${movie.endDate}",
-                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(
+                      "${movie.startDate} ,${movie.endDate}",
+                      style: Theme.of(context).textTheme.bodySmall,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ],
                 ),
                 const Row(

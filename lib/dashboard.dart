@@ -73,17 +73,17 @@ class _DashboardPagesState extends State<DashboardPages> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                    height: 280,
-                    width: double.infinity,
-                    child: BlocBuilder<MovieCubit, MovieState>(
-                        builder: (context, state) {
+                  height: 280,
+                  width: double.infinity,
+                  child: BlocBuilder<MovieCubit, MovieState>(
+                    builder: (context, state) {
                       return (state is MovieLoaded)
                           ? Padding(
                               padding: const EdgeInsets.only(top: 30),
                               child: ListView(
                                   scrollDirection: Axis.horizontal,
                                   children: state.movies
-                                      .sublist(0, 10)
+                                      .sublist(0, 1)
                                       .map((movie) => Padding(
                                             padding: EdgeInsets.only(
                                                 left: (movie ==
@@ -94,10 +94,12 @@ class _DashboardPagesState extends State<DashboardPages> {
                                           ))
                                       .toList()),
                             )
-                          : Center(
+                          : const Center(
                               child: Text("No Data Found"),
                             );
-                    })),
+                    },
+                  ),
+                ),
                 const SizedBox(
                   height: 50,
                 ),
@@ -110,8 +112,29 @@ class _DashboardPagesState extends State<DashboardPages> {
                 ),
                 Container(
                   height: 200,
-                  child: ListView(
-                    children: [],
+                  child: BlocBuilder<MovieCubit, MovieState>(
+                    builder: (context, state) {
+                      return (state is MovieLoaded)
+                          ? Padding(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: ListView(
+                                  scrollDirection: Axis.horizontal,
+                                  children: state.movies
+                                      .sublist(11, 24)
+                                      .map((movie) => Padding(
+                                            padding: EdgeInsets.only(
+                                                left: (movie ==
+                                                        state.movies.first)
+                                                    ? 24
+                                                    : 0),
+                                            child: VerticalCard(movie: movie),
+                                          ))
+                                      .toList()),
+                            )
+                          : const Center(
+                              child: Text("No Data Found"),
+                            );
+                    },
                   ),
                 ),
               ],
