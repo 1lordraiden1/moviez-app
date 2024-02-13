@@ -91,12 +91,25 @@ class DashboardPages extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const VerticalCard(
-                  image: "assets/thumnails/oldyasuo.jpg",
-                  title: "Old Yasuo",
-                  genre1: "History",
-                  genre2: "Action",
-                )
+                Container(
+                  height: 200,
+                  child: ListView(
+                    children: const [
+                      VerticalCard(
+                        image: "assets/thumnails/oldyasuo.jpg",
+                        title: "Old Yasuo",
+                        genre1: "History",
+                        genre2: "Action",
+                      ),
+                      VerticalCard(
+                        image: "assets/thumnails/oldyasuo.jpg",
+                        title: "Old Yasuo",
+                        genre1: "History",
+                        genre2: "Action",
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
